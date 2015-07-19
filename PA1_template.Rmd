@@ -125,16 +125,12 @@ For this part the weekdays() function may be of some help here. Use the dataset 
 ```
     Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 ```{r}
-
-    avgsteps_by_weekday<-function(x,for_weekend ) {
-        filter(x, weekday==for_weekend) %>% 
-        group_by(interval) %>% 
-        summarize(mean_steps=mean(steps))
-    }
-    int_avg_steps<-cbind( 
-        avgsteps_by_weekday(imputed,FALSE), 
-        avgsteps_by_weekday(imputed,TRUE) %>% select(mean_steps) )
-    setnames(int_avg_steps, c("interval","weekday","weekend"))
-
+   # setnames(int_avg_steps, c("interval","weekday","weekend"))
+    avg_step_daytype <- aggregate( steps ~interval+weekday,data<-imputed,mean)
+    xyplot( steps ~ interval | weekday, avg_step_daytype, 
+            type="l",
+            layout=c(1,2),
+            xlab="Interval",
+            ylab="Number of steps")
 ```
-Hit the time limit, the final step of generating the chart is missing
+\
