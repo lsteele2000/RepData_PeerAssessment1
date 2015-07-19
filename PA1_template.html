@@ -73,7 +73,7 @@ img {
 </ul>
 </div>
 
-<p>Note: Apologizes but found at the last minute that when viewed from github some text chunks are wrapped into edit boxes. This makes distinguishing code from comments a bit confusing further down. Don’t think i can fix this by the project deadline since i’m not sure what’s causing it.</p>
+<p>Note: Apologizes but found at the last minute that when viewed from github some text chunks are given a gray background. This makes distinguishing code from comments a bit confusing further down. Don’t think i can fix this by the project deadline since i’m not sure what’s causing it.</p>
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
 <p>Load helper libraries, filtering out the method override noise</p>
@@ -179,7 +179,10 @@ What is the impact of imputing missing data on the estimates of the total daily 
 <p>Are there differences in activity patterns between weekdays and weekends? For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part. Create a new factor variable in the dataset with two levels - “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</p>
 <pre class="r"><code>    imputed&lt;-mutate(imputed, weekend=as.factor(grepl(&quot;^S&quot;, weekdays(date) )))
     imputed&lt;-mutate(imputed, isweekend = factor(weekend,labels=c(&quot;weekday&quot;,&quot;weekend&quot;)))</code></pre>
-<pre><code>Make a panel plot containing a time series plot (i.e. type = &quot;l&quot;) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</code></pre>
+<pre><code>Make a panel plot containing a time series plot (i.e. type = &quot;l&quot;) of the 5-minute interval (x-axis) 
+and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
+See the README file in the GitHub repository to see an example of what this plot should look like 
+using simulated data.</code></pre>
 <pre class="r"><code># setnames(int_avg_steps, c(&quot;interval&quot;,&quot;weekday&quot;,&quot;weekend&quot;))
     avg_step_daytype &lt;- aggregate( steps ~ interval+isweekend,data&lt;-imputed,mean)
     xyplot( steps ~ interval | isweekend, avg_step_daytype, 

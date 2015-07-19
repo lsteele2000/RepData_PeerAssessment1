@@ -1,6 +1,6 @@
 # Reproducible Research: Peer Assessment 1
-Note: Apologizes but found at the last minute that when viewed from github some text chunks are wrapped
-into edit boxes. This makes distinguishing code from comments a bit confusing further down. Don't think 
+Note: Apologizes but found at the last minute that when viewed from github some text chunks are given a
+gray background. This makes distinguishing code from comments a bit confusing further down. Don't think 
 i can fix this by the project deadline since i'm not sure what's causing it.
 
 ## Loading and preprocessing the data
@@ -203,7 +203,10 @@ For this part the weekdays() function may be of some help here. Use the dataset 
     imputed<-mutate(imputed, weekend=as.factor(grepl("^S", weekdays(date) )))
     imputed<-mutate(imputed, isweekend = factor(weekend,labels=c("weekday","weekend")))
 ```
-    Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+    Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) 
+    and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
+    See the README file in the GitHub repository to see an example of what this plot should look like 
+    using simulated data.
 
 ```r
 # setnames(int_avg_steps, c("interval","weekday","weekend"))
