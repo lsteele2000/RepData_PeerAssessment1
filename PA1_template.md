@@ -1,4 +1,7 @@
 # Reproducible Research: Peer Assessment 1
+Note: Apologizes but found at the last minute that when viewed from github some text chunks are wrapped
+into edit boxes. This makes distinguishing code from comments a bit confusing further down. Don't think 
+i can fix this by the project deadline since i'm not sure what's causing it.
 
 ## Loading and preprocessing the data
 Load helper libraries, filtering out the method override noise
@@ -63,7 +66,10 @@ Per the discussion board this is interpreted as the mean/median across all steps
 ```
 
 ## What is the average daily activity pattern?
-    Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+
+    Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average 
+    number of steps taken, averaged across all days (y-axis)
+    
 
 ```r
     avg_steps_interval <- no_nas %>% group_by(interval) %>% summarize( mean_steps = mean(steps))
@@ -72,7 +78,9 @@ Per the discussion board this is interpreted as the mean/median across all steps
 
 ![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
 
-    Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+    Which 5-minute interval, on average across all the days in the dataset, contains the 
+    maximum number of steps?
+    
 
 ```r
     max_interval<-avg_steps_interval[which.max(avg_steps_interval$mean_steps)]
@@ -88,9 +96,9 @@ Per the discussion board this is interpreted as the mean/median across all steps
 
 
 ## Imputing missing values
-Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
+Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data. Calculate and report the 
+total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
-    Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
 ```r
     cat( sum( !complete.cases(data_set) ), "entries are missing a value for steps")
@@ -102,6 +110,7 @@ Note that there are a number of days/intervals where there are missing values (c
 
     Devise a strategy for filling in all of the missing values in the dataset.
 First we'll quantify the na distribution to determine a reasonable strategy.
+
 
 ```r
     rows_per_day <- nrow(avg_steps_interval)
@@ -151,7 +160,10 @@ The results indicate that only complete days are missing and that the day of wee
     imputed$steps[indices]<-fillvals[indices]
 ```
 
-    Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+    Make a histogram of the total number of steps taken each day.
+    Calculate and report the mean and median total number of steps taken per day. 
+    Do these values differ from the estimates from the first part of the assignment? 
+    What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ```r
     imputed_steps<-tot_steps(imputed)
